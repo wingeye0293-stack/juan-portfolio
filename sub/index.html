@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <title>제주 부루마블 40칸 보드판</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Tailwind 설정 (CDN) -->
+    <script>
+      tailwind = {
+        config: {
+          theme: {
+            extend: {
+              fontFamily: {
+                sans: ["system-ui", "sans-serif"],
+              },
+            },
+          },
+        },
+      };
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- 분리된 CSS -->
+    <link rel="stylesheet" href="css/style.css" />
+  </head>
+  <body class="bg-white">
+    <!-- UI 토글 버튼 (고정) -->
+    <button
+      id="toggle-ui"
+      class="fixed top-4 right-4 z-50 px-3 py-2 bg-gray-800 text-white text-xs rounded shadow hover:bg-gray-700"
+    >
+      UI 숨기기
+    </button>
+
+    <div
+      id="app-root"
+      class="flex flex-col items-center justify-center min-h-screen w-screen p-8 mx-auto font-sans"
+    >
+      <!-- 제목 + 컨트롤 패널 (토글 대상) -->
+      <div id="ui-panel" class="flex flex-col items-center">
+        <h1 class="text-3xl font-bold mb-2">제주 부루마블 40칸 보드판</h1>
+
+        <div class="flex flex-wrap items-center gap-3 mb-4">
+          <button
+            id="toggle-3d"
+            class="px-4 py-2 bg-gray-700 text-white rounded-md hover:bg-gray-600 transition"
+          >
+            3D 모드 끄기 (2D 보기)
+          </button>
+
+          <label class="text-sm inline-flex items-center gap-2 ml-2">
+            <input type="checkbox" id="show-numbers" />
+            번호 표시
+          </label>
+
+          <!-- 아이콘 크기 기본값 42px -->
+          <label class="text-sm ml-4 inline-flex items-center">
+            아이콘 크기
+            <span
+              id="icon-size-display"
+              class="ml-1 text-xs text-gray-600"
+            >(42px)</span>
+            <input
+              id="icon-size"
+              type="range"
+              min="20"
+              max="80"
+              value="42"
+              class="ml-2 align-middle"
+            />
+          </label>
+
+          <!-- 투명도 기본값 1.00 -->
+          <label class="text-sm inline-flex items-center">
+            투명도
+            <span
+              id="icon-opacity-display"
+              class="ml-1 text-xs text-gray-600"
+            >(1.00)</span>
+            <input
+              id="icon-opacity"
+              type="range"
+              min="0.1"
+              max="1"
+              step="0.05"
+              value="1"
+              class="ml-2 align-middle"
+            />
+          </label>
+
+          <!-- 중앙 로고 기본값 365px -->
+          <label class="text-sm ml-4 inline-flex items-center">
+            중앙 로고 크기
+            <span
+              id="center-logo-display"
+              class="ml-1 text-xs text-gray-600"
+            >(365px)</span>
+            <input
+              id="center-logo-size"
+              type="range"
+              min="80"
+              max="780"
+              value="365"
+              class="ml-2 align-middle"
+            />
+          </label>
+        </div>
+      </div>
+
+      <!-- 보드 영역 -->
+      <div
+        id="board-wrapper"
+        class="w-[820px] max-w-[92vw] mx-auto"
+      >
+        <div id="board" class="mx-auto select-none">
+          <div
+            id="grid"
+            class="relative grid w-full h-full border-4 border-gray-400 rounded-2xl overflow-visible shadow-xl bg-white"
+          ></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 분리된 JS -->
+    <script src="js/main.js"></script>
+  </body>
+</html>

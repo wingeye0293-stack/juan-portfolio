@@ -1,0 +1,104 @@
+/* 기본 리셋 */
+body {
+  margin: 0;
+  background-color: #ffffff;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
+
+/* 드래그 중 텍스트 선택 방지 + 박스 사이즈 정리 */
+* {
+  user-select: none;
+  box-sizing: border-box;
+}
+
+/* 전체 앱 루트 */
+#app-root {
+  min-height: 100vh;
+}
+
+/* 보드 래퍼: 원근감 설정 (perspective) */
+#board-wrapper {
+  perspective: 1200px;
+  perspective-origin: 50% 50%;
+}
+
+/* 실제 보드 영역 크기 + 3D 설정 */
+#board {
+  width: 770px;
+  height: 770px;
+  transform-style: preserve-3d;
+}
+
+/* 11×11 그리드 설정 */
+#grid {
+  display: grid;
+  grid-template-columns: repeat(11, 1fr);
+  grid-template-rows: repeat(11, 1fr);
+}
+
+/* 중앙 9×9 한라산 영역 + 백그라운드 이미지 */
+.center-area {
+  background-color: #eff9f9;
+  background-image: url("../images/bg_hallasan_center.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* 아이콘 공통 설정 */
+.tile-icon,
+.island-icon {
+  object-fit: contain;
+  pointer-events: none;
+}
+
+/* ==== 타일 두께감 표현 ==== */
+.tile-3d {
+  position: relative;
+  border-radius: 0.35rem;
+  /* 윗면 + 아래 그림자 */
+  box-shadow:
+    0 2px 0 rgba(148, 163, 184, 0.95),
+    0 6px 10px rgba(15, 23, 42, 0.22);
+  transition:
+    transform 0.12s ease-out,
+    box-shadow 0.12s ease-out;
+  overflow: hidden;
+}
+
+/* 살짝 볼륨감 주는 하이라이트 */
+.tile-3d::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+  pointer-events: none;
+}
+
+/* 마우스 오버 시 약간 떠 보이게 (옵션 느낌) */
+.tile-3d:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 3px 0 rgba(148, 163, 184, 1),
+    0 10px 16px rgba(15, 23, 42, 0.28);
+}
+
+/* 섬 박스도 두께감 */
+.island-3d {
+  position: relative;
+  border-radius: 0.4rem;
+  box-shadow:
+    0 2px 0 rgba(148, 163, 184, 0.95),
+    0 6px 10px rgba(15, 23, 42, 0.22);
+}
+
+.island-3d::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.65);
+  pointer-events: none;
+}
