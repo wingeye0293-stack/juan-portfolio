@@ -11781,3 +11781,204 @@ hr.divider-light {
 #message {
     padding: 0.75rem 1rem; /* 이메일 input 기준으로 통일 */
 }
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  width: 3rem;
+  height: 3rem;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 50%;
+  background-size: 1.5rem 1.5rem;
+  filter: invert(1) grayscale(100);
+}
+
+/* 기본 점 색상 */
+.carousel-indicators [data-bs-target] {
+  background-color: #888;      /* 기본 회색 점 */
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  opacity: 1;                  /* Bootstrap 기본값 0.5 → 1로 변경 */
+}
+
+/* 활성(active) 점 색상 */
+.carousel-indicators .active {
+  background-color: #000;      /* 활성 점은 진한 검정 */
+}
+
+/* 점 간격 */
+.carousel-indicators {
+  gap: 8px;
+}
+
+/* 캐러셀 점 네비게이션을 이미지 하단으로 이동 */
+#projectCarousel .carousel-indicators {
+  bottom: -70px;   /* 아래로 70px 이동 */
+  position: absolute;
+}
+
+#projectCarousel {
+  margin-bottom: 6rem !important;
+}
+
+/* 서브페이지용: 처음부터 navbar-shrink 상태처럼 보이게 */
+body.subpage #mainNav {
+  background-color: #fff;
+}
+
+/* 데스크톱 사이즈에서 색만 강제로 바꿔주기 */
+@media (min-width: 992px) {
+  body.subpage #mainNav {
+    background-color: #fff;
+  }
+
+  body.subpage #mainNav .navbar-brand,
+  body.subpage #mainNav .nav-link {
+    color: #000;
+  }
+
+  body.subpage #mainNav .nav-link:hover {
+    color: #fff;
+  }
+
+  body.subpage #mainNav .nav-link.active {
+    color: #64a19d;
+    border-bottom: 0.25rem solid #64a19d;
+  }
+}
+
+/* 스크롤을 내리기 전(= shrink 적용 전) → #64a19d */
+body.subpage #mainNav {
+  background-color: #64a19d !important;
+  transition: background-color 0.3s ease;
+}
+
+/* 스크롤을 내린 후 (navbar-shrink 클래스 추가) → #fff */
+body.subpage #mainNav.navbar-shrink {
+  background-color: #fff !important;
+}
+
+body.subpage #mainNav.navbar-shrink .nav-link:hover {
+  color: #64a19d !important;
+}
+
+/* 커스텀 캐러셀 기본 레이아웃 */
+.custom-carousel {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* 이미지 보이는 창 */
+.custom-carousel-window {
+  overflow: hidden;   /* 안쪽에 스크롤 생기지 않게 */
+  flex: 1;
+  height: auto;       /* ★ 고정 높이 제거 → 이미지 높이에 맞게 자동 */
+  position: relative;
+}
+
+
+/* 트랙 */
+.custom-carousel-track {
+  display: flex;
+  transition: transform 0.4s ease;
+  align-items: center;      /* 세로 방향 가운데 정렬 */
+}
+
+/* 기본 이미지 스타일: 3장씩 보이고, 잘리지 않게 contain */
+.custom-carousel-track img {
+  flex: 0 0 calc(100% / 3);
+  max-width: calc(100% / 3);
+  height: auto;           /* ★ 높이는 이미지 비율대로 */
+  object-fit: contain;    /* 혹은 아예 빼도 됨 */
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+/* 중앙에 온 이미지라면(가로든 세로든) 공통 효과 */
+.custom-carousel-track img.current-center {
+  z-index: 1;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.3);
+  border-radius: 8px;
+}
+
+/* 그 중에서도 가로 비율이면 확대까지 */
+.custom-carousel-track img.wide-current {
+  transform: scale(1.4);   /* 확대 효과 */
+}
+
+/* 화살표 버튼 */
+.custom-carousel-btn {
+  border: none;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.custom-carousel-btn:hover {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+/* 반응형: 화면이 좁으면 한 장만 보이게 (옵션) */
+@media (max-width: 768px) {
+  .custom-carousel-track img {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+/* ✅ 모바일에서는 한 장만 보이게 */
+@media (max-width: 768px) {
+  .custom-carousel-track img {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+}
+
+/* Portfolio 카드: 제목(.h2)을 설명(p)과 같은 크기로 맞추고, bold 유지 */
+#projects .portfolio-item .caption .caption-content .h2 {
+  font-size: 1rem;      /* 설명 텍스트 기본 크기와 동일하게 (필요하면 1.05rem 등으로 조절) */
+  font-weight: 700;     /* 볼드 유지 */
+  line-height: 1.4;
+  margin-bottom: 0.25rem;
+}
+
+/* (선택) 설명 텍스트도 확실히 1rem로 고정하고 싶으면 */
+#projects .portfolio-item .caption .caption-content p {
+  font-size: 1rem;
+  line-height: 1.4;
+}
+
+/* 서브페이지 - 스크롤 전: 햄버거 버튼(메뉴 글자 + 아이콘) 색 */
+body.subpage #mainNav .navbar-toggler {
+  color: #fff !important;          /* Menu 텍스트 색 */
+  border-color: rgba(255,255,255,0.6) !important;
+}
+
+body.subpage #mainNav .navbar-toggler .fa-bars {
+  color: #fff !important;          /* 햄버거 아이콘 색 */
+}
+
+/* 서브페이지 - 스크롤 후(navbar-shrink): 햄버거 버튼 색 */
+body.subpage #mainNav.navbar-shrink .navbar-toggler {
+  color: #64a19d !important;
+  border-color: #64a19d !important;
+}
+
+body.subpage #mainNav.navbar-shrink .navbar-toggler .fa-bars {
+  color: #64a19d !important;
+}
+
+.navbar-toggler:focus,
+.navbar-toggler:active,
+.navbar-toggler:focus-visible {
+  box-shadow: none;
+  outline: none;
+}
